@@ -193,7 +193,7 @@ def get_face_single(img_data: np.ndarray, face, face_index=0, det_size=(640, 640
 
             logger.status("[Reactor-Any20] Face sort Result ...")
             for f, area in zip_faces:
-                logger.status("[Reactor-Any20] bbox area : %s, ( %0.2f of max)", area, area / max_area * 100)
+                logger.status("[Reactor-Any20] bbox area : %s, ( %0.1f%% of max)", area, area / max_area * 100)
                 logger.status("[Reactor-Any20] bbox det_score : %f", f.det_score)
 
             # 3. Filter bbox with area
