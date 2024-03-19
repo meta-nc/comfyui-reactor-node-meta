@@ -1112,34 +1112,34 @@ class ReActorOptions:
 
 NODE_CLASS_MAPPINGS = {
     # --- MAIN NODES ---
-    "ReActorFaceSwap": reactor,
-    "ReActorFaceSwapOpt": ReActorPlusOpt,
-    "ReActorOptions": ReActorOptions,
-    "ReActorMaskHelper": MaskHelper,
+    "Any20_ReActorFaceSwap": reactor,
+    "Any20_ReActorFaceSwapOpt": ReActorPlusOpt,
+    "Any20_ReActorOptions": ReActorOptions,
+    "Any20_ReActorMaskHelper": MaskHelper,
     # --- Operations with Face Models ---
-    "ReActorSaveFaceModel": SaveFaceModel,
-    "ReActorLoadFaceModel": LoadFaceModel,
-    "ReActorBuildFaceModel": BuildFaceModel,
-    "ReActorMakeFaceModelBatch": MakeFaceModelBatch,
+    "Any20_ReActorSaveFaceModel": SaveFaceModel,
+    "Any20_ReActorLoadFaceModel": LoadFaceModel,
+    "Any20_ReActorBuildFaceModel": BuildFaceModel,
+    "Any20_ReActorMakeFaceModelBatch": MakeFaceModelBatch,
     # --- Additional Nodes ---
-    "ReActorRestoreFace": RestoreFace,
-    "ReActorImageDublicator": ImageDublicator,
-    "ImageRGBA2RGB": ImageRGBA2RGB,
+    "Any20_ReActorRestoreFace": RestoreFace,
+    "Any20_ReActorImageDublicator": ImageDublicator,
+    "Any20_ImageRGBA2RGB": ImageRGBA2RGB,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     # --- MAIN NODES ---
-    "ReActorFaceSwap": "ReActor 🌌 Fast Face Swap",
-    "ReActorFaceSwapOpt": "ReActor 🌌 Fast Face Swap [OPTIONS]",
-    "ReActorOptions": "ReActor 🌌 Options",
-    "ReActorMaskHelper": "ReActor 🌌 Masking Helper",
+    "Any20_ReActorFaceSwap": "[Any20] ReActor 🌌 Fast Face Swap",
+    "Any20_ReActorFaceSwapOpt": "[Any20] ReActor 🌌 Fast Face Swap [OPTIONS]",
+    "Any20_ReActorOptions": "[Any20] ReActor 🌌 Options",
+    "Any20_ReActorMaskHelper": "[Any20] ReActor 🌌 Masking Helper",
     # --- Operations with Face Models ---
-    "ReActorSaveFaceModel": "Save Face Model 🌌 ReActor",
-    "ReActorLoadFaceModel": "Load Face Model 🌌 ReActor",
-    "ReActorBuildFaceModel": "Build Blended Face Model 🌌 ReActor",
-    "ReActorMakeFaceModelBatch": "Make Face Model Batch 🌌 ReActor",
+    "Any20_ReActorSaveFaceModel": "[Any20] Save Face Model 🌌 ReActor",
+    "Any20_ReActorLoadFaceModel": "[Any20] Load Face Model 🌌 ReActor",
+    "Any20_ReActorBuildFaceModel": "[Any20] Build Blended Face Model 🌌 ReActor",
+    "Any20_ReActorMakeFaceModelBatch": "[Any20] Make Face Model Batch 🌌 ReActor",
     # --- Additional Nodes ---
-    "ReActorRestoreFace": "Restore Face 🌌 ReActor",
-    "ReActorImageDublicator": "Image Dublicator (List) 🌌 ReActor",
-    "ImageRGBA2RGB": "Convert RGBA to RGB 🌌 ReActor",
+    "Any20_ReActorRestoreFace": "[Any20] Restore Face 🌌 ReActor",
+    "Any20_ReActorImageDublicator": "[Any20] Image Dublicator (List) 🌌 ReActor",
+    "Any20_ImageRGBA2RGB": "[Any20] Convert RGBA to RGB 🌌 ReActor",
 }
