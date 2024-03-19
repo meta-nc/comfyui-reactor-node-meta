@@ -174,37 +174,47 @@ def get_face_single(img_data: np.ndarray, face, face_index=0, det_size=(640, 640
         # return faces_sorted[face_index], 0
         ## return sorted(face, key=lambda x: x.bbox[0])[face_index], 0
         ### MODIFIED - FROM ANY20
-        def sort_faces(faces: list):
-            import random
-            AREA_FILTER_THRESHOLD = 0.6
+        # ANY20 알고리즘을 사용하여 얼굴을 추출합니다.
+        # 한 개의 얼굴을 고정으로 추출하는 방식이므로 face_index 매개변수를 사용하지 않습니다.
+        import random
+        AREA_FILTER_THRESHOLD = 0.5
 
-            def get_bbox_area(face):
-                x1 = face.bbox[0]
-                y1 = face.bbox[1]
-                x2 = face.bbox[2]
-                y2 = face.bbox[3]
-                return (abs(x2 - x1) * abs(y2 - y1))
+        def get_bbox_area(face):
+            x1 = face.bbox[0]
+            y1 = face.bbox[1]
+            x2 = face.bbox[2]
+            y2 = face.bbox[3]
+            return (abs(x2 - x1) * abs(y2 - y1))
 
-            # 1. Get bbox area
-            zip_faces = [(f, get_bbox_area(f)) for f in faces]
+        # 1. Get bbox area
+        face_area = [get_bbox_area(f) for f in face]
 
-            # 2. Get maximum area from bboxes
-            _, max_area = max(zip_faces, key=lambda x: x[1])
+        # 2. calculate values
+        area_max = max(face_area)
+        area_thres = area_max * AREA_FILTER_THRESHOLD
 
-            logger.status("[Reactor-Any20] Face sort Result ...")
-            for f, area in zip_faces:
-                logger.status("[Reactor-Any20] bbox area : %s, ( %0.1f%% of max)", area, area / max_area * 100)
-                logger.status("[Reactor-Any20] bbox det_score : %f", f.det_score)
+        logger.status("[Reactor-Any20] Face sort Result ...")
+        for f, area in zip(face, face_area):
+            logger.status("[Reactor-Any20] bbox area : %s, ( %0.1f%% of max)", area, area / area_max * 100)
+            logger.status("[Reactor-Any20] bbox det_score : %f", f.det_score)
 
-            # 3. Filter bbox with area
-            area_thres = max_area * AREA_FILTER_THRESHOLD
-            filtered = [f for f, area in zip_faces if area >= area_thres]
+        # 3. Filter bbox with area
+        filtered_area = [area for area in face_area if area >= area_thres]
+        filtered_face = [f for f, area in zip(face, face_area) if area >= area_thres]
 
-            # 4. Shuffle bboxes for random select
-            random.shuffle(filtered)
-            return filtered
-        return sort_faces(face)[face_index], 0
+        area_sum = sum(filtered_area)
+        filtered_prob = [area / area_sum for area in filtered_area if area >= area_thres]
+
+        assert len(filtered_area) == len(filtered_face) == len(filtered_prob)
+        logger.status("[Reactor-Any20] Face Probability ...")
+        for f, area, prob in zip(face, face_area, filtered_prob):
+            logger.status("[Reactor-Any20] bbox area : %s , score: %s, prob: %0.3f", area, f.det_score, prob)
+
+        # 4. pick bbox from random choice
+        return random.choices(filtered_face, weights=filtered_prob, k=1)[0], 0
         ### MODIFIED - FROM ANY20
+    except ValueError:  # When face is Empty, max(face_area) raises ValueError
+        return None, 0  # for reactor logging
     except IndexError:
         return None, 0
 

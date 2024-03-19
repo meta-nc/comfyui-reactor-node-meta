@@ -8,5 +8,6 @@
 * 기존 : Bounding box 기준으로 가장 왼쪽 얼굴을 선택
 * 변경 후 : 아래 절차를 따릅니다.
     1. Bounding box의 넓이를 모두 구하고, 가장 큰 Bounding box를 선택합니다.
-    2. 가장 큰 Bounding box와 비슷한 크기 `(가장 큰Bounding box 크기) * AREA_FILTER_THRESHOLD`의 Bounding box만 남깁니다.
-    3. 이 Bounding box 를 랜덤 순서로 정렬한 후, `target_index` 또는 `source_index` 파라미터에 의해 선택됩니다.
+    2. `(가장 큰 Bounding box 넓이) * AREA_FILTER_THRESHOLD` 보다 큰 넓이를 가진 Bounding box만 남깁니다.
+    3. `해당 Bounding box의 넓이 / 가장 큰 Bounding box 넓이` 를 확률로 하여 1개의 Bounding box만 선택합니다.
+        * 0번 index를 선택하도록 하드코딩 되어 있기 때문에 face_index 파라미터는 사용되지 않습니다.
