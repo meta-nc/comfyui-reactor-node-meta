@@ -11,3 +11,7 @@
     2. `(가장 큰 Bounding box 넓이) * AREA_FILTER_THRESHOLD` 보다 큰 넓이를 가진 Bounding box만 남깁니다.
     3. `해당 Bounding box의 넓이 / 가장 큰 Bounding box 넓이` 를 확률로 하여 1개의 Bounding box만 선택합니다.
         * 0번 index를 선택하도록 하드코딩 되어 있기 때문에 face_index 파라미터는 사용되지 않습니다.
+
+## Node Option
+
+* Any20_Reactor의 기본 face_order는 'any20' 입니다. JSON 생성 시 노드 생성을 최대한 억제하기 위해서입니다.

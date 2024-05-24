@@ -146,7 +146,7 @@ class reactor:
 
     def __init__(self):
         self.face_helper = None
-        self.faces_order = ["large-small", "large-small"]
+        self.faces_order = ["any20", "any20"]
 
     def restore_face(
             self,
@@ -1080,12 +1080,14 @@ class ReActorOptions:
         return {
             "required": {
                 "input_faces_order": (
-                    ["left-right","right-left","top-bottom","bottom-top","small-large","large-small"], {"default": "large-small"}
+                    # ["left-right","right-left","top-bottom","bottom-top","small-large","large-small"], {"default": "large-small"}  # ANY20 MODIFIED
+                    ["any20", "left-right","right-left","top-bottom","bottom-top","small-large","large-small"], {"default": "any20"}
                 ),
                 "input_faces_index": ("STRING", {"default": "0"}),
                 "detect_gender_input": (["no","female","male"], {"default": "no"}),
                 "source_faces_order": (
-                    ["left-right","right-left","top-bottom","bottom-top","small-large","large-small"], {"default": "large-small"}
+                    # ["left-right","right-left","top-bottom","bottom-top","small-large","large-small"], {"default": "large-small"} # ANY20 MODIFIED
+                    ["any20", "left-right","right-left","top-bottom","bottom-top","small-large","large-small"], {"default": "any20"}
                 ),
                 "source_faces_index": ("STRING", {"default": "0"}),
                 "detect_gender_source": (["no","female","male"], {"default": "no"}),
